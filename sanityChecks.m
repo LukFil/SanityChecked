@@ -1,8 +1,10 @@
-function tableRes = sanityChecks(model, testChoice)
+function tableRes = sanityChecks(model, testChoice, type)
 % This function performs sanity checks
 % Argument model        should be model as transformed by
 %                       model = writeCbModel(model, 'xls', 'modelRPMI')
-
+%          type         a string variable that can be used to create files
+%                       with unique names (recommended use "Control" or
+%                       "Senescent" 
 %          testChoice   should be a matrix of 1 row and 15 boolean values,
 %                       indicating which tests are to be provided
 %                       the values are ordered in following pattern:
@@ -360,7 +362,7 @@ tableRes = TableChecks;
 t = char(datetime(now,'ConvertFrom','datenum'));
 t = t(~isspace(t));
 t(regexp(t, '[:]'))='-';
-resultsFileName = append('TestResults', t);
+resultsFileName = append('TestResults', type, t);
 save(strcat(resultsFileName,'.mat'));
 
 end
