@@ -28,7 +28,7 @@ genesToRemoveSenescence = intersect(table2cell(senescenceData(indexSenescence,2)
     deleteModelGenes(modelRPMI, genesToRemoveSenescence);
 
 modelControl    = writeCbModel(modelRPMIcontrol, 'xls', 'modelRPMIcontrol');
-modelSenescence = writeCbModel(modelRPMIsenesence, 'xls', 'modelRPMIsenescence');
+modelSenescence = writeCbModel(modelRPMIsenescence, 'xls', 'modelRPMIsenescence');
 
 sanityChecks(modelControl, checksArray, 'Control');
 sanityChecks(modelSenescence, checksArray, 'Senescence');
