@@ -30,6 +30,7 @@ options.solver         = 'iMAT';
 options.expressionRxns = expressionRxns;
 options.threshold_lb   = lower;
 options.threshold_ub   = upper;
+options.runtime        = 10000000;
 
 modelPlease = createTissueSpecificModel(modelControl, options)
 % iMAT (modelControl, expressionRxns, lower, upper)
