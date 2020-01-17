@@ -23,8 +23,13 @@ standardDevExpr   = std (expressionRxns);
 
 modelControl      = writeCbModel(modelRPMI, 'xls', 'modelRPMIcontrol');
 
-
-
 upper = meanExpression + 1/2*(standardDevExpr);
-lower = meanExpression - 1/2*(standardDevExpr);
-iMAT (modelControl, expressionRxns, lower, upper)
+lower = meanExpression ;
+
+options.solver         = 'iMAT';
+options.expressionRxns = expressionRxns;
+options.threshold_lb   = lower;
+options.threshold_ub   = upper;
+
+modelPlease = createTissueSpecificModel(modelControl, options)
+% iMAT (modelControl, expressionRxns, lower, upper)
