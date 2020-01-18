@@ -1,0 +1,41 @@
+function [model, options] = prepDataForIMAT(startModel, exprData)
+%       
+%           starModel = a model the expresion to be mapped onto; an example
+%                       might be recon RPMI medium simulated
+%           exprData  = a file of 2 columns:
+%               column 1 should be called 'gene'
+%               column 2 should be called 'value'
+%                       
+
+
+% Assign reaction expressions
+[expressionRxns, parsedGPR] = mapExpressionToReactions(startModel, exprData);
+
+% Transform the expression
+expressionTransformed = zeros(length(expressionRxns), 1);
+for n = 1:length(expressionRxns)
+    if expressionRxns(n, 1) > 0
+        expressionTransformed(n, 1) = log(expressionRxns(n, 1));
+    else
+        expressionTransformed(n, 1) = expressionRxns(n, 1);
+    end
+end
+
+% Expression without values that cannot be log-ed
+holdExpression    = expressionRxns(expressionRxns > 0);
+holdExpressionLog = log(holdExpression);
+
+meanExpression    = mean(holdExpressionLog);
+standardDevExpr   = std (holdExpressionLog);
+
+model             = writeCbModel(startModel, 'xls', 'modelRPMIcontrol');
+
+upper = meanExpression + 1/2*(standardDevExpr);
+lower = meanExpression - 1/2*(standardDevExpr);
+
+options.solver         = 'iMAT';
+options.expressionRxns = expressionTransformed;
+options.threshold_lb   = lower;
+options.threshold_ub   = upper;
+options.runtime        = 259200; %Three days max runtime
+end
