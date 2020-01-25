@@ -31,13 +31,13 @@ testP = P;
 testSupp = Supp;
 fstIfVal = ~isempty( setdiff( J, Supp ) ) ;
 
-if ~isempty( setdiff( J, Supp ) ) 
-  fprintf ('Error: Inconsistent irreversible core reactions.\n');
-  A=[];
-  
-  return;
-
-end
+% if ~isempty( setdiff( J, Supp ) ) 
+%   fprintf ('Error: Inconsistent irreversible core reactions.\n');
+%   A=[];
+%   
+%   return;
+% 
+% end
 A = Supp;  %fprintf('|A|=%d\n', length(A));
 J = setdiff( C, A ); %fprintf('|J|=%d  ', length(J));
 global fstApreWhi fstJ fstP fstSing fstModel fstEpsilon fstT

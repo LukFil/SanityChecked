@@ -29,9 +29,9 @@ K = intersect( J, find(V >= 0.99*epsilon) );
 findK = K;
 
 
-if ~isempty( K ) 
-  return;
-end
+% if ~isempty( K ) 
+%   return;
+% end
 
 V = LP9_4_rFASTCORMICS2( K, P, model, epsilon, t );
 
