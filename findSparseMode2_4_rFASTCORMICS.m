@@ -13,7 +13,7 @@ if isempty( J )
   return;
 end
 
-global findSing findPrevV findK findEpsilon
+global findSing findPrevV findK
 
 if singleton
   V = LP7_4_rFASTCORMICS2( J(1), model, epsilon );
@@ -33,11 +33,7 @@ if ~isempty( K )
   return;
 end
 
-% Potential Fix: before it was giving values outside of the boundaries,
-% however without this it should work well enough: there are computations
-% in the code previously that return a 'V' value that seems to be more
-% functional. I hope that's right
-V = LP9_4_rFASTCORMICS2( K, P, model, epsilon,t );
+V = LP9_4_rFASTCORMICS2( K, P, model, epsilon, t );
 
 Supp = find( abs(V) >= 0.99*epsilon );
 global findSupp findV;

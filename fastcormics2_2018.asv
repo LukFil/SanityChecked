@@ -134,8 +134,7 @@ C = setdiff(C,t_keep);
 %% building of the context-specific model
 A2 = fastcore2_4_fastcormics(C, model_output, epsilon, t_keep);
 
-global seeA2 model_output cormEpsi
-cormEpsi = epsilon;
+global seeA2 model_output t_keep cormEpsi
 seeA2 = A2;
 
 model = removeRxns(model_output,model_output.rxns(setdiff(1:numel(model_output.rxns),A2)));

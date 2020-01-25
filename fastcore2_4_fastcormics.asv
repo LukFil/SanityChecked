@@ -16,21 +16,11 @@ A = [];
 flipped = false;
 singleton = false;  
 
-global fstN fstI fstIfVal testJ testP testSupp;
-fstN = N;
-fstI = I;
-
 % start with I
 J = intersect( C, I );% fprintf('|J|=%d  ', length(J));
 P = setdiff( N, C);
 P = setdiff( P, t);
-Supp = findSparseMode2_4_rFASTCORMICS( J, P, singleton, model, epsilon, t);
-
-testJ = J;
-testP = P;
-testSupp = Supp;
-fstIfVal = ~isempty( setdiff( J, Supp ) ) ;
-
+Supp = findSparseMode2_4_rFASTCORMICS( J, P, singleton, model, epsilon,t );
 if ~isempty( setdiff( J, Supp ) ) 
   fprintf ('Error: Inconsistent irreversible core reactions.\n');
   A=[];
@@ -44,9 +34,7 @@ global fstApreWhi fstJ fstP fstSing fstModel fstEpsilon fstT
 fstJ = J;
 fstP = P;
 fstSing = singleton;
-fstModel = model;
-fstEpsilon = epsilon;
-fstT = t;
+fstModel
 fstApreWhi = A;
 
 % main loop     
